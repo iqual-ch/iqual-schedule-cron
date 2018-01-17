@@ -1,0 +1,5 @@
+services:
+  scheduler_cron_event_subscriber:
+    class: Drupal\scheduler_cron\EventSubscriber\RequestSubscriber
+    tags:
+      - {name: event_subscriber}
