@@ -1,0 +1,14 @@
+  {
+    "name": "drupal/scheduler_cron",
+    "description": "Links the scheduler's leightweigt cron to page requests.",
+    "type": "drupal-module",
+    "repositories": [
+      {
+        "type": "composer",
+        "url": "https://github.com/iqual-ch/iqual-schedule-cron"
+      }
+    ],
+    "require": {
+      "drupal/scheduler":"*"
+    }
+  }
