@@ -39,6 +39,9 @@ class RequestSubscriber implements EventSubscriberInterface
             if ($log) {
                 \Drupal::logger('scheduler_cron')->notice('Executing scheduler cron on shutdown');
             }
+            // Update execution time.
+            $store->set('last', time());
+
             drupal_register_shutdown_function(array($this, 'executeCron'), $log, $store);
         }
     }
@@ -64,20 +67,8 @@ class RequestSubscriber implements EventSubscriberInterface
         // Get Scheduler cronjob key for url
         $config = \Drupal::config('scheduler.settings');
         $key = $config->get('lightweight_cron_access_key');
-        $url = \Drupal::request()->getSchemeAndHttpHost() . '/scheduler/cron/' . $key;
-
-        // Call url
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_NOBODY, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_exec($ch);
-        curl_close($ch);
-
-        // Update execution time.
-        $store->set('last', time());
+        $schedulerManager = \Drupal::service('scheduler.manager');
+        $schedulerManager->runLightweightCron();
 
         if ($log) {
             \Drupal::logger('scheduler_cron')->notice('Executed scheduler cron');
