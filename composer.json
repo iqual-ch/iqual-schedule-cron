@@ -1,5 +1,5 @@
   {
-    "name": "drupal/scheduler_cron",
+    "name": "iqual/scheduler_cron",
     "description": "Links the scheduler's leightweigt cron to page requests.",
     "type": "drupal-module",
     "repositories": [
