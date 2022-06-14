@@ -9,6 +9,6 @@
       }
     ],
     "require": {
-      "drupal/scheduler":"*"
+      "drupal/scheduler":"^1.4"
     }
   }
