@@ -1,9 +1,9 @@
 <?php
 namespace Drupal\scheduler_cron\EventSubscriber;
 
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Drupal\Core\Config\Config;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -15,10 +15,10 @@ class RequestSubscriber implements EventSubscriberInterface
     /**
      * Register running the Scheduler cronjob on shutdown if interval has passed.
      *
-     * @param GetResponseEvent $event
+     * @param \Symfony\Component\HttpKernel\Event\RequestEvent $event
      * @return void
      */
-    public function runSchedulerCron(GetResponseEvent $event)
+    public function runSchedulerCron(RequestEvent $event)
     {
         // Get configuration
         $config = \Drupal::config('scheduler_cron.settings');
