@@ -10,5 +10,12 @@
     ],
     "require": {
       "drupal/scheduler":"^1.4"
+    },
+    "extra": {
+      "patches": {
+        "drupal/scheduler": {
+          "Issue 3210321 - Don't unpublish a node when scheduled to publish": "https://git.drupalcode.org/issue/scheduler-3210321/-/commit/edac499338e1d9605c43af659b342ba75b603982.diff"
+        }
+      }
     }
   }
