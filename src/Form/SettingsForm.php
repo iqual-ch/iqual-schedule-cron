@@ -33,10 +33,18 @@ class SettingsForm extends ConfigFormBase {
     $config = $this->config('scheduler_cron.settings');
 
     // Add a textfield for interval.
-    $form['interval'] = ['#type' => 'textfield', '#title' => $this->t('Interval in minutes'), '#default_value' => $config->get('interval')];
+    $form['interval'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Interval in minutes'),
+      '#default_value' => $config->get('interval'),
+    ];
 
     // Add a checkbox for log setting.
-    $form['log'] = ['#type' => 'checkbox', '#title' => $this->t('Logging'), '#default_value' => $config->get('log')];
+    $form['log'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Logging'),
+      '#default_value' => $config->get('log'),
+    ];
 
     return parent::buildForm($form, $form_state);
   }
