@@ -14,9 +14,8 @@ class RequestSubscriber implements EventSubscriberInterface {
   /**
    * Register running the Scheduler cronjob on shutdown if interval has passed.
    *
-   * @param GetResponseEvent $event
-   *
-   * @return void
+   * @param Symfony\Component\HttpKernel\Event\RequestEvent $event
+   *   The event.
    */
   public function runSchedulerCron(RequestEvent $event) {
     // Get configuration.
@@ -33,7 +32,8 @@ class RequestSubscriber implements EventSubscriberInterface {
       $store->set('last', 0);
     }
 
-    // If last execution was longer than $interval ago, register shutdown function.
+    // If last execution was longer than $interval ago, register
+    // shutdown function.
     if ($store->get('last') < time() - $interval * 60) {
       if ($log) {
         \Drupal::logger('scheduler_cron')->notice('Executing scheduler cron on shutdown');
@@ -59,22 +59,15 @@ class RequestSubscriber implements EventSubscriberInterface {
    *
    * @param bool $log
    *   Whether to log the execution.
-   * @param \Drupal\Core\KeyValueStore\KeyValueStoreInterface $store
-   *   The KeyValueStore for tracking the execution time.
-   *
-   * @return void
    */
-  public static function executeCron($log, $store) {
+  public static function executeCron($log) {
     // Get Scheduler cronjob key for url.
-    $config = \Drupal::config('scheduler.settings');
-    $key = $config->get('lightweight_cron_access_key');
     $schedulerManager = \Drupal::service('scheduler.manager');
     $schedulerManager->runLightweightCron();
 
     if ($log) {
       \Drupal::logger('scheduler_cron')->notice('Executed scheduler cron');
     }
-
   }
 
 }
