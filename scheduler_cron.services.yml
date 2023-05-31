@@ -1,5 +1,6 @@
 services:
   scheduler_cron_event_subscriber:
     class: Drupal\scheduler_cron\EventSubscriber\RequestSubscriber
+    arguments: ['@config.factory', '@keyvalue', '@logger.factory']
     tags:
       - {name: event_subscriber}
