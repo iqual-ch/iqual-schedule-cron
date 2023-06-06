@@ -1,4 +1,4 @@
-# Scheduler Cron
+# Scheduler Request Cron
 This module runs the [Scheduler](https://www.drupal.org/project/scheduler) cron job after automatically after requests. The interval between executions can be set.
 
 ## Prerequisites
@@ -6,7 +6,7 @@ This module requires the following Drupal modules:
 * [Scheduler](https://www.drupal.org/project/scheduler)
 
 ## Installing
-1. Create a folder named scheduler_cron in the modules directory of the Drupal installation.
+1. Create a folder named scheduler_request_cron in the modules directory of the Drupal installation.
 2. Move the files within the created directory.
 3. Activate module.
 
