@@ -6,9 +6,7 @@ This module requires the following Drupal modules:
 * [Scheduler](https://www.drupal.org/project/scheduler)
 
 ## Installing
-1. Create a folder named scheduler_request_cron in the modules directory of the Drupal installation.
-2. Move the files within the created directory.
-3. Activate module.
+Install the module using composer: `composer require drupal/scheduler_request_cron`
 
 ## Options
 * Interval: The minimum interval in minutes between executions. The cron is only run when a page is requested. Defaults to 5 minutes.
