@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ */
+
+/**
+ * Copy old settings over if available.
+ */
+function scheduler_request_cron_install() {
+  $oldConfig = \Drupal::config('scheduler_cron.settings');
+  if (!empty($oldConfig)) {
+    $newConfig = \Drupal::configFactory()->getEditable('scheduler_request_cron.settings');
+    $newConfig->set('interval', $oldConfig->get('interval'))
+      ->set('log', $oldConfig->get('log'))
+      ->save();
+  }
+}
+
