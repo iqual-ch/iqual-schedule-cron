@@ -1,3 +1,8 @@
+This module has been renamed to **Scheduler Request Cron** and transfered to git.drupalcode.org for the purpose of making it an Open-Source Drupal.org project.   
+   
+Link to Drupalcode Repository: https://git.drupalcode.org/project/scheduler_request_cron   
+Drupal.org Scheduler Request Cron: https://www.drupal.org/project/scheduler_request_cron   
+
 # Scheduler Cron
 This module runs the [Scheduler](https://www.drupal.org/project/scheduler) cron job after automatically after requests. The interval between executions can be set.
 
