@@ -1,5 +1,5 @@
 name: Scheduler Request Cron
-description: Allows to run Scheduler's lightweight cron to be run as part of requests.
+description: Allows running Scheduler's lightweight as part of page requests.
 package: Custom
 
 type: module
