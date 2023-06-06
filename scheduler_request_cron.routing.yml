@@ -1,0 +1,7 @@
+scheduler_request_cron.settings:
+  path: '/admin/config/scheduler_request_cron/settings'
+  defaults:
+    _form: '\Drupal\scheduler_request_cron\Form\SettingsForm'
+    _title: 'Scheduler Request Cron settings'
+  requirements:
+    _permission: 'administer site configuration'

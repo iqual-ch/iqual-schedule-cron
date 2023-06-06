@@ -1,9 +1,0 @@
-name: Scheduler cron
-description: Allows to run scheduler's lightweight cron to be run as part of requests.
-package: Custom
-
-type: module
-core_version_requirement: ^8 || ^9
-configure: scheduler_cron.settings
-dependencies:
-  - scheduler:scheduler

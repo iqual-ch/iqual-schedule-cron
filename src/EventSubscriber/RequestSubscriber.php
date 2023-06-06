@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\scheduler_cron\EventSubscriber;
+namespace Drupal\scheduler_request_cron\EventSubscriber;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\KeyValueStore\KeyValueFactoryInterface;
@@ -52,14 +52,14 @@ class RequestSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * Register running the Scheduler cronjob on shutdown if interval has passed.
+   * Register running the Scheduler Request Cronjob on shutdown if interval has passed.
    *
    * @param Symfony\Component\HttpKernel\Event\RequestEvent $event
    *   The event.
    */
   public function runSchedulerCron(RequestEvent $event) {
     // Get configuration.
-    $config = $this->configFactory->get('scheduler_cron.settings');
+    $config = $this->configFactory->get('scheduler_request_cron.settings');
     $interval = $config->get('interval');
     $log = $config->get('log');
     if (!\is_numeric($interval)) {
@@ -67,7 +67,7 @@ class RequestSubscriber implements EventSubscriberInterface {
     }
 
     // Get storage for last execution time.
-    $store = $this->keyValueFactory->get('scheduler_cron');
+    $store = $this->keyValueFactory->get('scheduler_request_cron');
     if (!$store->has('last')) {
       $store->set('last', 0);
     }
@@ -76,7 +76,7 @@ class RequestSubscriber implements EventSubscriberInterface {
     // shutdown function.
     if ($store->get('last') < time() - $interval * 60) {
       if ($log) {
-        $this->logger->get('scheduler_cron')->notice('Executing scheduler cron on shutdown');
+        $this->logger->get('scheduler_request_cron')->notice('Executing Scheduler Request Cron on shutdown');
       }
       // Update execution time.
       $store->set('last', time());
@@ -101,12 +101,12 @@ class RequestSubscriber implements EventSubscriberInterface {
    *   Whether to log the execution.
    */
   public static function executeCron($log) {
-    // Get Scheduler cronjob key for url.
+    // Get Scheduler Request Cronjob key for url.
     $schedulerManager = \Drupal::service('scheduler.manager');
     $schedulerManager->runLightweightCron();
 
     if ($log) {
-      \Drupal::logger('scheduler_cron')->notice('Executed scheduler cron');
+      \Drupal::logger('scheduler_request_cron')->notice('Executed Scheduler Request Cron');
     }
   }
 

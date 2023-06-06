@@ -1,12 +1,12 @@
 <?php
 
-namespace Drupal\scheduler_cron\Form;
+namespace Drupal\scheduler_request_cron\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Configuration form for setting Scheduler Cron settings .
+ * Configuration form for setting Scheduler Request Cron settings .
  */
 class SettingsForm extends ConfigFormBase {
 
@@ -14,7 +14,7 @@ class SettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'scheduler_cron_settingsForm';
+    return 'scheduler_request_cron_settingsForm';
   }
 
   /**
@@ -22,7 +22,7 @@ class SettingsForm extends ConfigFormBase {
    */
   protected function getEditableConfigNames() {
     return [
-      'scheduler_cron.settings',
+      'scheduler_request_cron.settings',
     ];
   }
 
@@ -30,7 +30,7 @@ class SettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $config = $this->config('scheduler_cron.settings');
+    $config = $this->config('scheduler_request_cron.settings');
 
     // Add a textfield for interval.
     $form['interval'] = [
@@ -54,7 +54,7 @@ class SettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // Retrieve the configuration and set new values.
-    $this->configFactory->getEditable('scheduler_cron.settings')
+    $this->configFactory->getEditable('scheduler_request_cron.settings')
       ->set('interval', $form_state->getValue('interval'))
       ->set('log', $form_state->getValue('log'))
       ->save();
@@ -67,7 +67,7 @@ class SettingsForm extends ConfigFormBase {
    */
   public function defaultConfiguration() {
     return [
-      'scheduler_cron.settings' => [
+      'scheduler_request_cron.settings' => [
         'interval' => 5,
         'log' => FALSE,
       ],

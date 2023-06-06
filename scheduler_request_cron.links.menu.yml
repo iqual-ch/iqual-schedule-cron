@@ -1,0 +1,4 @@
+scheduler_request_cron.settings:
+  title: 'Scheduler Request Cron settings'
+  parent: system.admin_config_system
+  route_name: 'scheduler_request_cron.settings'
